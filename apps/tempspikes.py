@@ -47,8 +47,10 @@ body = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.H2('Upload .CSV File'),
-            html.H6(
-                'Warning: Top row must contain the column headers. If necessary, delete all rows above column headers.'),
+            html.H4('Warnings:', style={'text-decoration-line': 'underline'}),
+            html.H6('* Top row must contain the column headers. If necessary, delete all rows above column headers.'),
+            html.H6('* Check for and remove mid-data headers (rows). This occurs if sensor configuration was changed.'),
+            html.H6('* You do not need to remove "end" from last row.'),
             dcc.Upload(
                 id='datatable_upload',
                 children=html.Div([
