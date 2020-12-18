@@ -82,7 +82,7 @@ body = dbc.Container([
         dbc.Col([
             dcc.ConfirmDialog(
                 id='alert',
-                message='Please check data. It failed to upload',
+                message='Data Uploaded Successfully',
             ),
             html.H3('Upload .CSV File'),
             dcc.Upload(
@@ -227,7 +227,7 @@ def dropdown_values(contents, filename):
               State('datatable_upload', 'filename'))
 def display_confirm(options, filename):
     if filename:
-        if not options:
+        if options:
             return True
     return False
 
