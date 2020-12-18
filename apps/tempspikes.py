@@ -46,16 +46,50 @@ body = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.H2('Upload .CSV File'),
-            html.H4('Warnings:', style={'text-decoration-line': 'underline'}),
+            html.H5('Notes:', style={'text-decoration-line': 'underline'}),
+            html.H6('* This tool was design for analyzing hourly (Group 2) temperature data.'),
+            html.H6('* Use this tool to find hourly temperature spikes and determine if they need to be removed from '
+                    'Group 1.'),
+            html.H6('* Keep in mind the more the data you upload the slower this tool will run.'),
+            html.H6('* Clicking refresh on browser will reset the tool and data will need to be uploaded again.'),
+            html.H6('* "Cleaning" CSV data is required before uploading.  See Warnings ->'),
+        ]),
+        dbc.Col([
+            html.H5('Warnings:', style={'text-decoration-line': 'underline'}),
             html.H6('* Top row must contain the column headers. If necessary, delete all rows above column headers.'),
-            html.H6('* Check for and remove mid-data headers (rows). This occurs if sensor configuration was changed.'),
-            html.H6('* You do not need to remove "end" from last row.'),
+            html.H6('* Check for and remove mid-data headers (rows). These will exist if sensor configuration was '
+                    'changed.'),
+            html.H6('* You do not need to remove "end" from last row.  This tool omits the last row of data ("end").'),
+        ]),
+    ]),
+
+    dbc.Row([
+        dbc.Col([
+            html.Hr(
+                style={
+                    "border": "none",
+                    "border-top": "3px double #333",
+                    "color": "#333",
+                    "overflow": "visible",
+                    "text-align": "center",
+                    "height": "5px",
+                }
+            ),
+        ])
+    ]),
+
+    dbc.Row([
+        dbc.Col([
+            dcc.ConfirmDialog(
+                id='alert',
+                message='Please check data. It failed to upload',
+            ),
+            html.H3('Upload .CSV File'),
             dcc.Upload(
                 id='datatable_upload',
                 children=html.Div([
                     'Drag and Drop or ',
-                    html.A('Select Files' , style={'color': 'blue', 'text-decoration': 'underline'}),
+                    html.A('Select Files', style={'color': 'blue', 'text-decoration': 'underline'}),
                 ]),
                 style={
                     'width': '100%', 'height': '60px', 'lineHeight': '60px',
@@ -70,6 +104,7 @@ body = dbc.Container([
                 html.Div([
                     html.H3('Select Metric'),
                     dcc.Dropdown(id='metric'),
+                    html.Br(),
                 ]),
                 html.Div([
                     html.H3('Select Maximum Temperature Change (c)'),
@@ -185,6 +220,16 @@ def dropdown_values(contents, filename):
 
         no_headers = [{'label': '', 'value': ''}]
         return [no_headers]
+
+
+@app.callback(Output('alert', 'displayed'),
+              Input('metric', 'options'),
+              State('datatable_upload', 'filename'))
+def display_confirm(options, filename):
+    if filename:
+        if not options:
+            return True
+    return False
 
 
 @app.callback([Output('stored_metric', 'children'),
