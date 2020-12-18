@@ -61,7 +61,10 @@ body = dbc.Container([
                     'changed.'),
             html.H6('* You do not need to remove "end" from last row.  This tool omits the last row of data ("end").'),
             html.Br(),
-            html.H6('Data uploaded successfully will alert you with a confirmation box after clicking "Submit".')
+            html.H6(
+                'Data uploaded successfully will alert you with a confirmation box after clicking "Submit".',
+                style={'font-weight': 'bold'}
+            )
         ]),
     ]),
 
