@@ -60,6 +60,8 @@ body = dbc.Container([
             html.H6('* Check for and remove mid-data headers (rows). These will exist if sensor configuration was '
                     'changed.'),
             html.H6('* You do not need to remove "end" from last row.  This tool omits the last row of data ("end").'),
+            html.Br(),
+            html.H6('Data uploaded successfully will alert you with a confirmation box after clicking "Submit".')
         ]),
     ]),
 
@@ -223,11 +225,11 @@ def dropdown_values(contents, filename):
 
 
 @app.callback(Output('alert', 'displayed'),
-              Input('metric', 'options'),
+              Input('print_spikes', 'data'),
               State('datatable_upload', 'filename'))
-def display_confirm(options, filename):
+def display_confirm(data, filename):
     if filename:
-        if options:
+        if data:
             return True
     return False
 
