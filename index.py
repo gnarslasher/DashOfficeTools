@@ -8,6 +8,7 @@ from app import server
 from apps.homepage import Homepage
 from apps.comingsoon import Comingsoon
 from apps.tempspikes import Tempspikes
+from apps.editing_qc import Editing_qc
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -20,6 +21,8 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/tempspikes':
         return Tempspikes()
+    elif pathname == '/editing_qc':
+        return Editing_qc()
     elif pathname == '/comingsoon':
         return Comingsoon()
     else:

@@ -6,24 +6,6 @@ from navbar import Navbar
 
 nav = Navbar()
 
-# body = dbc.Container([
-#     dbc.Row(
-#         dbc.Col(html.Br()),
-#     ),
-#     dbc.Row([
-#         dbc.Col([
-#             html.H3('Data Editing Tools'),
-#             dcc.Link('Temperature Spike Analysis', href='/tempspikes'),
-#             html.Br(),
-#             dcc.Link('More Apps Coming Soon', href='/comingsoon'),
-#         ]),
-#         dbc.Col([
-#             html.H3('Site Health Tools'),
-#             dcc.Link('More Apps Coming Soon', href='/comingsoon'),
-#         ])
-#     ]),
-# ], fluid=True)
-
 body = dbc.Container([
     dbc.Row(
         dbc.Col(html.Br()),
@@ -31,6 +13,8 @@ body = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.H3('Data Editing Tools'),
+            dcc.Link('Editing QC Tool', href='/editing_qc'),
+            html.Br(),
             dcc.Link('Temperature Spike Analysis', href='/tempspikes'),
             html.Br(),
             dcc.Link('More Coming Soon...', href='/comingsoon'),
@@ -38,7 +22,7 @@ body = dbc.Container([
             html.Br(),
             html.Br(),
             html.H3('Sensor Health Tools'),
-            dcc.Link('More Coming Soon...', href='/comingsoon'),
+            dcc.Link('Coming Soon...', href='/comingsoon'),
         ]),
     ]),
 ], fluid=True)
