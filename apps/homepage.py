@@ -23,6 +23,11 @@ body = dbc.Container([
             html.Br(),
             html.H3('Sensor Health Tools'),
             dcc.Link('Coming Soon...', href='/comingsoon'),
+            html.Br(),
+            html.Br(),
+            html.Br(),
+            html.H3('Data Analysis Tools'),
+            dcc.Link('Coming Soon...', href='/comingsoon'),
         ]),
     ]),
 ], fluid=True)
