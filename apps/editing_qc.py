@@ -1,7 +1,3 @@
-import requests
-import xml.dom.minidom as minidom
-import datetime as dt
-import pandas as pd
 import dash
 from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
@@ -10,6 +6,11 @@ import dash_bootstrap_components as dbc
 import dash_table
 import dash_table.FormatTemplate as FormatTemplate
 from dash_table.Format import Format, Scheme, Sign, Symbol
+
+import requests
+import xml.dom.minidom as minidom
+import datetime as dt
+import pandas as pd
 
 from app import app
 from navbar import Navbar

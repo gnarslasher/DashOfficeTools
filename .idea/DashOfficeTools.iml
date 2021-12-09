@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/development" />
       <excludeFolder url="file://$MODULE_DIR$/test_data" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (DashOfficeTools)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

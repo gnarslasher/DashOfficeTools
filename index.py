@@ -7,8 +7,8 @@ from app import server
 
 from apps.homepage import Homepage
 from apps.comingsoon import Comingsoon
-from apps.tempspikes import Tempspikes
 from apps.editing_qc import Editing_qc
+from apps.sitecorrelator import site_correlator
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -19,12 +19,12 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               Input('url', 'pathname'))
 def display_page(pathname):
-    if pathname == '/tempspikes':
-        return Tempspikes()
-    elif pathname == '/editing_qc':
+    if pathname == '/editing_qc':
         return Editing_qc()
     elif pathname == '/comingsoon':
         return Comingsoon()
+    elif pathname == '/site_correlator':
+        return site_correlator()
     else:
         return Homepage()
 
