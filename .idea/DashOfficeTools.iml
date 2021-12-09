@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/development" />
       <excludeFolder url="file://$MODULE_DIR$/test_data" />
+      <excludeFolder url="file://$MODULE_DIR$/old_requirements" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (DashOfficeTools)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
