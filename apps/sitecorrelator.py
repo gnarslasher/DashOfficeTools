@@ -806,6 +806,7 @@ def update_scatter(id1, id2):
 
         model = px.get_trendline_results(fig)
         results = model.iloc[0]["px_fit_results"]
+        nobs = results.nobs
         alpha = results.params[0]
         beta = results.params[1]
         p_beta = results.pvalues[1]
@@ -814,7 +815,8 @@ def update_scatter(id1, id2):
         line1 = 'y = ' + str(round(alpha, 4)) + ' + ' + str(round(beta, 4))+'x'
         line2 = 'p-value = ' + '{:.5f}'.format(p_beta)
         line3 = 'R^2 = ' + str(round(r_squared, 3))
-        summary = line1 + '<br>' + line2 + '<br>' + line3
+        line4 = 'n = ' + str(int(nobs))
+        summary = line1 + '<br>' + line2 + '<br>' + line3 + '<br>' + line4
 
         fig.add_annotation(
             xref="x",
@@ -858,6 +860,7 @@ def update_scatter_filtered(id1, id2, months):
 
         model = px.get_trendline_results(fig)
         results = model.iloc[0]["px_fit_results"]
+        nobs = results.nobs
         alpha = results.params[0]
         beta = results.params[1]
         p_beta = results.pvalues[1]
@@ -866,7 +869,8 @@ def update_scatter_filtered(id1, id2, months):
         line1 = 'y = ' + str(round(alpha, 4)) + ' + ' + str(round(beta, 4))+'x'
         line2 = 'p-value = ' + '{:.5f}'.format(p_beta)
         line3 = 'R^2 = ' + str(round(r_squared, 3))
-        summary = line1 + '<br>' + line2 + '<br>' + line3
+        line4 = 'n = ' + str(int(nobs))
+        summary = line1 + '<br>' + line2 + '<br>' + line3 + '<br>' + line4
 
         fig.add_annotation(
             xref="x",
