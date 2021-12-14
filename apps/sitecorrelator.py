@@ -803,6 +803,41 @@ def update_scatter(id1, id2):
         df = df.reset_index()
         df.rename(columns={'index': 'DATE'}, inplace=True)
         fig = px.scatter(data_frame=df, x=id1, y=id2, trendline="ols", marginal_x="box", marginal_y="box")
+
+        model = px.get_trendline_results(fig)
+        results = model.iloc[0]["px_fit_results"]
+        alpha = results.params[0]
+        beta = results.params[1]
+        p_beta = results.pvalues[1]
+        r_squared = results.rsquared
+
+        line1 = 'y = ' + str(round(alpha, 4)) + ' + ' + str(round(beta, 4))+'x'
+        line2 = 'p-value = ' + '{:.5f}'.format(p_beta)
+        line3 = 'R^2 = ' + str(round(r_squared, 3))
+        summary = line1 + '<br>' + line2 + '<br>' + line3
+
+        fig.add_annotation(
+            xref="x",
+            yref="paper",
+            x=df[id1].max(),
+            y='0',
+            text=summary,
+            showarrow=False,
+            font=dict(
+                family="Courier New, monospace",
+                size=16,
+                color="#ffffff"
+            ),
+            align="right",
+            arrowhead=2,
+            arrowsize=1,
+            arrowwidth=2,
+            arrowcolor="#636363",
+            borderwidth=2,
+            borderpad=4,
+            bgcolor="rgba(100,100,100, 0.6)",
+            opacity=0.8
+        )
         return fig
     else:
         return None
@@ -820,6 +855,41 @@ def update_scatter_filtered(id1, id2, months):
         df.rename(columns={'index': 'DATE'}, inplace=True)
         df1 = df.loc[df['DATE'].dt.month.isin(months)]
         fig = px.scatter(data_frame=df1, x=id1, y=id2, trendline="ols", marginal_x="box", marginal_y="box")
+
+        model = px.get_trendline_results(fig)
+        results = model.iloc[0]["px_fit_results"]
+        alpha = results.params[0]
+        beta = results.params[1]
+        p_beta = results.pvalues[1]
+        r_squared = results.rsquared
+
+        line1 = 'y = ' + str(round(alpha, 4)) + ' + ' + str(round(beta, 4))+'x'
+        line2 = 'p-value = ' + '{:.5f}'.format(p_beta)
+        line3 = 'R^2 = ' + str(round(r_squared, 3))
+        summary = line1 + '<br>' + line2 + '<br>' + line3
+
+        fig.add_annotation(
+            xref="x",
+            yref="paper",
+            x=df[id1].max(),
+            y='0',
+            text=summary,
+            showarrow=False,
+            font=dict(
+                family="Courier New, monospace",
+                size=16,
+                color="#ffffff"
+            ),
+            align="right",
+            arrowhead=2,
+            arrowsize=1,
+            arrowwidth=2,
+            arrowcolor="#636363",
+            borderwidth=2,
+            borderpad=4,
+            bgcolor="rgba(100,100,100, 0.6)",
+            opacity=0.8
+        )
         return fig
     else:
         return None
